@@ -89,10 +89,10 @@ def moverRaquetasyPelota(): #funcion para el control de las palas y la pelota
 
     #contro de la bola limite derecho
     if ball_pos[0] + BALL_RADIO > ANCHO_VENTANA-pelota.get_width()+PAD_WIDTH:
-        pygame.mixer.music.load('sonidos/toque.wav')
+        pygame.mixer.music.load('./sonidos/toque.wav')
         pygame.mixer.music.play()
         if ball_pos[1] + BALL_RADIO < raqueta_2_pos[1] or ball_pos[1]-BALL_RADIO > raqueta_2_pos[1]+ PAD_HEIGHT:
-            pygame.mixer.music.load('sonidos/out.mp3')
+            pygame.mixer.music.load('./sonidos/out.mp3')
             pygame.mixer.music.play()
             marcador_1 +=1 
             lanza_bola(LEFT)
@@ -102,10 +102,10 @@ def moverRaquetasyPelota(): #funcion para el control de las palas y la pelota
 
     #contro de la bola limite izquierdo
     if ball_pos[0] + BALL_RADIO < pelota.get_width()-20 - PAD_WIDTH:
-        pygame.mixer.music.load('sonidos/toque.wav')
+        pygame.mixer.music.load('./sonidos/toque.wav')
         pygame.mixer.music.play()
         if ball_pos[1] + BALL_RADIO < raqueta_1_pos[1] or ball_pos[1]-BALL_RADIO > raqueta_1_pos[1]+ PAD_HEIGHT:
-            pygame.mixer.music.load('sonidos/out.mp3')
+            pygame.mixer.music.load('./sonidos/out.mp3')
             pygame.mixer.music.play()
             marcador_2 +=1            
             lanza_bola(RIGHT)
