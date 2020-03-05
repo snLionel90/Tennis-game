@@ -89,10 +89,9 @@ def moverRaquetasyPelota(): #funcion para el control de las palas y la pelota
 
     #contro de la bola limite derecho
     if ball_pos[0] + BALL_RADIO > ANCHO_VENTANA-pelota.get_width()+PAD_WIDTH:
-        pygame.mixer.music.load('./sonidos/toque.wav')
+        pygame.mixer.music.load('sonidos/toque.wav')
         pygame.mixer.music.play()
-        if ball_pos[1] + BALL_RADIO < raqueta_2_pos[1] or ball_pos[1]-BALL_RADIO > raqueta_2_pos[1]+ PAD_HEIGHT:
-            
+        if ball_pos[1] + BALL_RADIO < raqueta_2_pos[1] or ball_pos[1]-BALL_RADIO > raqueta_2_pos[1]+ PAD_HEIGHT:          
             marcador_1 +=1 
             lanza_bola(LEFT)
             
@@ -101,10 +100,9 @@ def moverRaquetasyPelota(): #funcion para el control de las palas y la pelota
 
     #contro de la bola limite izquierdo
     if ball_pos[0] + BALL_RADIO < pelota.get_width()-20 - PAD_WIDTH:
-        pygame.mixer.music.load('./sonidos/toque.wav')
+        pygame.mixer.music.load('sonidos/toque.wav')
         pygame.mixer.music.play()
         if ball_pos[1] + BALL_RADIO < raqueta_1_pos[1] or ball_pos[1]-BALL_RADIO > raqueta_1_pos[1]+ PAD_HEIGHT:
-           
             marcador_2 +=1            
             lanza_bola(RIGHT)
             
@@ -171,8 +169,7 @@ while running: #condicion de ejecucion
             presion_tecla(evento.key)
          
         if evento.type == pygame.KEYUP:
-            teclaSuelta(evento.key)
-            #si presionas la tecla escape vuelves a la pantalla de inicio
+            teclaSuelta(evento.key)     
         
     #dibujando las pantallas
     canvas.blit (bg,[0,0])
@@ -196,23 +193,40 @@ while running: #condicion de ejecucion
     if marcador_1 == 6:
         txt_ganador = fuente.render('Ha Ganado el jugador 1',1,(ROJO))
         canvas.blit(txt_ganador, (222,215))
+        txtReinicio = fuente.render('Pulsa la tecla R para reiniciar',1,(ROJO))
+        canvas.blit(txtReinicio,(222,150))
+
         imagen = pygame.image.load('imagenes/copa.png')
         canvas.blit (imagen,[280,ALTO_VENTANA//2])
         pygame.mixer.music.load('./sonidos/corneta.wav')
         pygame.mixer.music.play(3)  
         ball_velocidad[0] = 0
         ball_velocidad[1] = 0
-    
+
+    #esta condicion reincia el juego al pulsar la tecla 'r'
+        if evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_r:
+                nuevoJuego()
+           
     #Cuando llege a 6 puntos, saldra una imagen en pantalla una copa y un texto con el nombre del jugador ganador
     if marcador_2 == 6:
         txt_ganador = fuente.render('Ha Ganado el jugador 2',1,(BLACK))
         canvas.blit(txt_ganador, (222,215))
+        txtReinicio = fuente.render('Pulsa la tecla R para reiniciar',1,(ROJO))
+        canvas.blit(txtReinicio,(222,150))
+
         imagen = pygame.image.load('imagenes/copa.png')
         canvas.blit (imagen,[280,ALTO_VENTANA//2])
         pygame.mixer.music.load('./sonidos/corneta.wav')
         pygame.mixer.music.play(3)      
         ball_velocidad[0] = 0
-        ball_velocidad[1] = 0       
+        ball_velocidad[1] = 0 
+
+    #esta condicion reincia el juego al pulsar la tecla 'r'
+        if evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_r:
+                nuevoJuego()
+
     #llamando a las funciones
     inserta_texto()       
     moverRaquetasyPelota()
